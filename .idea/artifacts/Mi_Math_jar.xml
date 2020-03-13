@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Mi_Math:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Mi_Math_jar</output-path>
+    <root id="archive" name="Mi_Math.jar">
+      <element id="module-output" name="Mi_Math" />
+    </root>
+  </artifact>
+</component>
