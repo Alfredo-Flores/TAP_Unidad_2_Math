@@ -9,10 +9,6 @@ public class Operadores {
 
     }
 
-    public static void main(String[] args) {
-        System.out.println(raiz(64));
-    }
-
     public static double raiz(double x0){
         double root,givenError,error;
         boolean flag=true;
