@@ -34,7 +34,6 @@ public class Operadores {
         return Math.pow(x,3)-(0.165*Math.pow(x,2))+(3.993*Math.pow(10,-4));
     }
 
-
     public static double Fprime_X(double x){
         return 3*Math.pow(x,2)-0.33*x;
     }
@@ -176,6 +175,22 @@ public class Operadores {
         else return x * pow(x * x, (n - 1) / 2);
     }
 
+    public static int pow(int x, long n) {
+        if (n < 0) return pow(1 / x, -n);
+        else if (n == 0) return 1;
+        else if (n == 1) return x;
+        else if (n % 2 == 0) return pow(x * x, n / 2);
+        else return x * pow(x * x, (n - 1) / 2);
+    }
+
+    public static long pow(long x, long n) {
+        if (n < 0) return pow(1 / x, -n);
+        else if (n == 0) return 1;
+        else if (n == 1) return x;
+        else if (n % 2 == 0) return pow(x * x, n / 2);
+        else return x * pow(x * x, (n - 1) / 2);
+    }
+
     public static double pow(double x, int n) {
         if (n < 0) return pow(1 / x, -n);
         else if (n == 0) return 1;
@@ -183,4 +198,25 @@ public class Operadores {
         else if (n % 2 == 0) return pow(x * x, n / 2);
         else return x * pow(x * x, (n - 1) / 2);
     }
+
+    public static double raizCuadrada(double Number)
+    {
+        double sqrRoot = 0;
+        double temp = 0;
+        temp = Number/2;
+
+        while (Number >= 0.0)
+        {
+            sqrRoot = temp - (temp * temp - Number) / (2 * temp);
+            double value;
+            value = abs(temp - sqrRoot);
+
+            if (value < .0001)
+                return sqrRoot;
+
+            else temp = sqrRoot;
+        }
+        return Number;
+    }
+
 }

@@ -8,44 +8,96 @@ public class Trigonometria {
     Trigonometria() {
     }
 
-    public static double sin(double a) {
-        a %= 2 * PI;
-
-        if (a < 0) {
-            a = 2 * PI - a;
+    public static double sin(double x) {
+        float s = 0;
+        int signo = 1;
+        for(int i=3; i<15; i+=2)
+        {
+            s += signo*Operadores.pow(x, i) / Operadores.factorial(i);
+            signo *= -1;
         }
-
-        int sign = 1;
-        if (a > PI) {
-            a -= PI;
-            sign = -1;
-        }
-
-        final int PRECISION = 8;
-        double temp = 0;
-        for (int i = 0; i <= PRECISION; i++) {
-            temp += Operadores.pow(-1, i) * (Operadores.pow(a, 2 * i + 1) / Operadores.factorial(2 * i + 1));
-        }
-
-        return sign * temp;
+        return s;
     }
 
-    public static double cos(double x) {
-        double cosOut = 1;
-        int n = 2;
-        int precision = 8;
-        int factorial = 1;
-        double power = 1;
-        while (n<=precision) {
-            power = power * x * x * -1; // note the -1 for the addition flip flop
-            factorial = factorial * n * (n-1);
-            cosOut = cosOut + (power/factorial);
-            n = n + 2;
+    public static double cos(double grados) {
+        double s = 0;
+        int signo = 1;
+        for (int i = 0, n2 = 16 * 2; i <= n2; i+=2)
+        {
+            s += signo*Operadores.pow(grados, i) / Operadores.factorial(i);
+            signo *= -1;
         }
-        return cosOut;
+        return s;
     }
 
-    public static double toRadians(double angdeg) {
-        return angdeg / 180.0 * PI;
+    public static double tan(double valor) {
+        double tangente;
+
+        tangente = sin(valor) / cos(valor);
+
+        return tangente;
     }
+
+    public static double asin(double x) {
+        double s = x;
+        double anterior = 1;
+        for(int i=3; i<84; i+=2)
+        {
+            anterior *= ((double) (i - 2) /(i-1));
+            s += anterior*(Operadores.pow(x, i) / i);
+        }
+        return s;
+    }
+
+    public static double acos(double valor) {
+        return (PI / 2) - asin(valor);
+    }
+
+
+    public static double cot(double valor) {
+        double cotangente;
+
+        cotangente = 1 / tan(valor);
+
+        return cotangente;
+
+    }
+
+    public static double sec(double valor) {
+        double secante;
+
+        secante = 1 / cos(valor);
+
+        return secante;
+
+    }
+
+    public static double csc(double valor) {
+        double cosecante;
+
+        cosecante = 1 / sin(valor);
+
+        return cosecante;
+
+    }
+
+    public static double Grados(double radianes) {
+        double grados, pi = 3.14159265358979;
+
+        grados = radianes * (180 / pi);
+
+        return grados;
+
+    }
+
+    public static double Radianes(double grados) {
+        double radianes, pi = 3.14159265358979;
+
+        radianes = grados * (pi / 180);
+
+        return radianes;
+
+    }
+
+
 }
